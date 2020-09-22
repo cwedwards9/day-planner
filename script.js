@@ -1,29 +1,50 @@
+// get saved scores from localstorage or it not any set to array of empty objects
+    var events =  JSON.parse(localStorage.getItem("events")) ||
+    [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""},];
+
+
 // get the current date and display it in the jumbotron
     var now = moment().format("dddd, MMMM Do YYYY");
     $("#currentDay").text(now);
 
 
-// empty the div and then iterate through to add each row hour to the calendar
-    $("div.container").empty();
+// iterate through the loop to add each row hour to the calendar
     for(var i = 0; i < 9; i++){
+        // create a div and append it to the div container
         var hourRow = $("<div>");
         hourRow.attr("id", "row" + i);
         hourRow.addClass("row");
         $("div.container").append(hourRow);
 
-        // append the time for each row
-        var hour = $("<p>" + "10:00 AM" + "</p>");
+        // append the time to the row
+        // var time = ParseInt(i);
+        var hour = $("<p>" + i + ' AM' + "</p>");
         hour.addClass("hour");
         $(hourRow).append(hour);
 
-        // append the text area for each row
+        // append the text area to the row
         var txtEvent = $("<textarea>");
         txtEvent.addClass("description");
+        txtEvent.attr("data", i);
+        txtEvent.val(events[i].text);
         $(hourRow).append(txtEvent);
 
-        // append a button for each row
+        // append a button to the row
         var saveBtn = $("<button>" + "<i class='fas fa-save'></i>" + "</button>");
         saveBtn.addClass("saveBtn");
         $(hourRow).append(saveBtn);
     }
 
+
+// clicking the save button will save/overwrite the respective textarea's text and save to the local storage
+    $("div.container").on("click", "button", function(){
+        var event = $(this).prev();
+        var index = event.attr("data");
+        var text = event.val();
+        events[index].text = text;
+        alert("Event saved!");
+
+        localStorage.setItem("events", JSON.stringify(events));
+    })
+
+// get the current time (hour) and compare it to each row to dynamically change the color
