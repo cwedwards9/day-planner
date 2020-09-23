@@ -19,6 +19,8 @@
         // extract time from var i and format it
         var time = i + 9;
         var formattedTime = moment().hour(time).format("h A");
+        // find the relative tense of the time
+        var relativeTime = getRelativeTime(time);
         
         // append the time to the row
         var hour = $("<p>" + formattedTime + "</p>");
@@ -28,6 +30,7 @@
         // append the text area to the row
         var txtEvent = $("<textarea>");
         txtEvent.addClass("description");
+        txtEvent.addClass(relativeTime);
         txtEvent.attr("data", i);
         txtEvent.val(events[i].text);
         $(hourRow).append(txtEvent);
@@ -49,3 +52,20 @@
 
         localStorage.setItem("events", JSON.stringify(events));
     })
+
+
+// get the current time (hour) and compare it to each hour row to dynamically change the color
+    function getRelativeTime(time){
+        var currentHour = moment().format("h");
+        var relTime;
+        if(time < currentHour){
+            relTime = "past";
+        } 
+        else if(time == currentHour){
+            relTime = "present";
+        } 
+        else if(time > currentHour) {
+            relTime = "future";
+        }
+        return relTime;
+    }
