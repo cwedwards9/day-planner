@@ -1,4 +1,4 @@
-// get saved scores from localstorage or it not any set to array of empty objects
+// get saved scores from localstorage or if not any set to array of empty objects
     var events =  JSON.parse(localStorage.getItem("events")) ||
     [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""},];
 
@@ -16,9 +16,12 @@
         hourRow.addClass("row");
         $("div.container").append(hourRow);
 
+        // extract time from var i and format it
+        var time = i + 9;
+        var formattedTime = moment().hour(time).format("h A");
+        
         // append the time to the row
-        // var time = ParseInt(i);
-        var hour = $("<p>" + i + ' AM' + "</p>");
+        var hour = $("<p>" + formattedTime + "</p>");
         hour.addClass("hour");
         $(hourRow).append(hour);
 
@@ -46,5 +49,3 @@
 
         localStorage.setItem("events", JSON.stringify(events));
     })
-
-// get the current time (hour) and compare it to each row to dynamically change the color
