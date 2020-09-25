@@ -8,7 +8,7 @@
     $("#currentDay").text(now);
 
 
-// iterate through the loop to add each row hour to the calendar
+// iterate through the loop to add each row hour to the calendar (9-5 work day, 9 rows)
     for(var i = 0; i < 9; i++){
         // create a div and append it to the div container
         var hourRow = $("<div>");
@@ -16,10 +16,11 @@
         hourRow.addClass("row");
         $("div.container").append(hourRow);
 
-        // extract time from var i and format it
+        // extract time from var i and format it to display
         var time = i + 9;
-        var formattedTime = moment().hour(time).format("h A");
-        // find the relative tense of the time
+        var formattedTime  = moment().hour(time).format("h A");
+
+        // find the relative tense of the time (past, present, future)
         var relativeTime = getRelativeTime(time);
         
         // append the time to the row
@@ -56,8 +57,9 @@
 
 // get the current time (hour) and compare it to each hour row to dynamically change the color
     function getRelativeTime(time){
-        var currentHour = moment().format("h");
+        var currentHour = moment().format("H");
         var relTime;
+        
         if(time < currentHour){
             relTime = "past";
         } 
