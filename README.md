@@ -8,9 +8,9 @@ An hour that has passed in the work day is dynamically turned gray while any hou
 
 
 ## Libraries
-    * Bootstrap
-    * jQuery
-    * Moment.js
+*Bootstrap
+*jQuery
+*Moment.js
 
 
 ## Example
