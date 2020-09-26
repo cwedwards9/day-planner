@@ -57,6 +57,7 @@
 
 // get the current time (hour) and compare it to each hour row to dynamically change the color
     function getRelativeTime(time){
+        // get current hour in H format (0 - 23 hour intervals)
         var currentHour = moment().format("H");
         var relTime;
         
