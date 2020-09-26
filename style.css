@@ -22,6 +22,11 @@ textarea{
   border-bottom: 10px solid black;
 }
 
+#currentDay {
+  color: #77dd77;
+  font-size: 2rem;
+}
+
 .description{
   white-space: pre-wrap;
 }
@@ -52,7 +57,7 @@ textarea{
 }
 
 .present {
-  background-color: #ff6961;
+  background-color: #f7a000;
   color: white;
 }
 
