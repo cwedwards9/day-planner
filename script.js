@@ -1,35 +1,35 @@
 // get saved scores from localstorage or if not any set to array of empty objects
-    var events =  JSON.parse(localStorage.getItem("events")) ||
-    [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""},];
+    const events =  JSON.parse(localStorage.getItem("events")) ||
+    [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: ""}];
 
 
 // get the current date and display it in the jumbotron
-    var now = moment().format("dddd, MMMM Do YYYY");
+    let now = moment().format("dddd, MMMM Do YYYY");
     $("#currentDay").text(now);
 
 
 // iterate through the loop to add each row hour to the calendar (9-5 work day, 9 rows)
-    for(var i = 0; i < 9; i++){
+    for(let i = 0; i < 9; i++){
         // create a div and append it to the div container
-        var hourRow = $("<div>");
+        let hourRow = $("<div>");
         hourRow.attr("id", "row" + i);
         hourRow.addClass("row");
         $("div.container").append(hourRow);
 
         // extract time from var i and format it to display
-        var time = i + 9;
-        var formattedTime  = moment().hour(time).format("h A");
+        let time = i + 9;
+        let formattedTime  = moment().hour(time).format("h A");
 
         // find the relative tense of the time (past, present, future)
-        var relativeTime = getRelativeTime(time);
+        let relativeTime = getRelativeTime(time);
         
         // append the time to the row
-        var hour = $("<p>" + formattedTime + "</p>");
+        let hour = $("<p>" + formattedTime + "</p>");
         hour.addClass("hour");
         $(hourRow).append(hour);
 
         // append the text area to the row
-        var txtEvent = $("<textarea>");
+        let txtEvent = $("<textarea>");
         txtEvent.addClass("description");
         txtEvent.addClass(relativeTime);
         txtEvent.attr("data", i);
@@ -37,7 +37,7 @@
         $(hourRow).append(txtEvent);
 
         // append a button to the row
-        var saveBtn = $("<button>" + "<i class='fas fa-save'></i>" + "</button>");
+        let saveBtn = $("<button>" + "<i class='fas fa-save'></i>" + "</button>");
         saveBtn.addClass("saveBtn");
         $(hourRow).append(saveBtn);
     }
@@ -45,9 +45,9 @@
 
 // clicking the save button will save/overwrite the respective textarea's text and save to the local storage
     $("div.container").on("click", "button", function(){
-        var event = $(this).prev();
-        var index = event.attr("data");
-        var text = event.val();
+        let event = $(this).prev();
+        let index = event.attr("data");
+        let text = event.val();
         events[index].text = text;
         alert("Event saved!");
 
@@ -58,8 +58,8 @@
 // get the current time (hour) and compare it to each hour row to dynamically change the color
     function getRelativeTime(time){
         // get current hour in H format (0 - 23 hour intervals)
-        var currentHour = moment().format("H");
-        var relTime;
+        let currentHour = moment().format("H");
+        let relTime;
         
         if(time < currentHour){
             relTime = "past";
