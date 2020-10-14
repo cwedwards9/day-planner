@@ -16,15 +16,28 @@ textarea{
 
 .jumbotron {
   text-align: center;
-  background-color: transparent;
-  color: black;
+  /* background-color: transparent; */
+  background-image: url("./planner.jpg");
+  background-size: cover;
+  background-position: 0px 500px;
+  color: #f7a000;
   border-radius: 0;
   border-bottom: 10px solid black;
 }
 
+@media(max-width: 775px){
+  .jumbotron {
+    background-position: 0px;
+  }
+}
+
 #currentDay {
-  color: #77dd77;
+  color: #06AED5;
   font-size: 2rem;
+}
+
+.lead {
+  color: black;
 }
 
 .description{
