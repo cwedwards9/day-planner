@@ -17,7 +17,7 @@ textarea{
 .jumbotron {
   text-align: center;
   /* background-color: transparent; */
-  background-image: url("./planner.jpg");
+  background-image: url("./assets/planner.jpg");
   background-size: cover;
   background-position: 0px 500px;
   color: #f7a000;
